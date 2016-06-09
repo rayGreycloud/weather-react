@@ -1,18 +1,24 @@
 var React = require('react');
-
-// var About = React.createClass({
-//   render: function() {
-//
-//   }
-// });
+var {Link} = require('react-router');
 
 var About = (props) => {
   return (
     <div>
-      <h3>About Component</h3>
-      <p>Welcome to the About page</p>
+      <h3 className='text-centered'>About React Weather App</h3>
+      <p>Welcome to the React Weather App. This weather application was created using React, a Javascript library for building user interfaces, and Node.js, which is built on Chrome's V8 Javascript engine. The weather information is supplied by Open Weather Map.</p>
+      <p>For more information about these web technologies, check out the links below:</p>
+      <ul>
+        <li>
+          <a href='https://facebook.github.io/react'>React</a>
+        </li>
+        <li>
+          <a href='https://nodejs.org/en'>Node.js</a>
+        </li>
+        <li>
+          <a href='https://openweathermap.org'>Open Weather Map</a>
+        </li>
+      </ul>
     </div>
-
   )
 };
 
