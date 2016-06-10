@@ -4,7 +4,7 @@ var {Link} = require('react-router');
 var About = (props) => {
   return (
     <div>
-      <h3 className='text-centered'>About React Weather App</h3>
+      <h1 className='text-center page-title'>About React Weather App</h1>
       <p>Welcome to the React Weather App. This weather application was created using React, a Javascript library for building user interfaces, and Node.js, which is built on Chrome's V8 Javascript engine. The weather information is supplied by Open Weather Map.</p>
       <p>For more information about these web technologies, check out the links below:</p>
       <ul>
