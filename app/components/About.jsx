@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 var {Link} = require('react-router');
 
-var About = (props) => {
+const About = () => {
   return (
     <div>
       <h1 className='text-center page-title'>About React Weather App</h1>
@@ -23,4 +23,4 @@ var About = (props) => {
 };
 
 
-module.exports = About;
+export default About;

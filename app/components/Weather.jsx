@@ -19,7 +19,8 @@ var Weather = React.createClass({
       location: undefined,
       temp: undefined
     });
-
+    // Refactor to getWeather and setState on
+    // all props needed for WeatherCard
     openWeatherMap.getTemp(location).then(function(temp) {
       that.setState({
         location: location,
@@ -49,6 +50,9 @@ var Weather = React.createClass({
       window.location.hash = '#/';
     }
   },
+  // Add separate function to create WeatherCard
+
+  // Refactor to pass all weather props to WeatherCard
   render: function() {
     var {isLoading, temp, location, errorMessage} = this.state;
 
