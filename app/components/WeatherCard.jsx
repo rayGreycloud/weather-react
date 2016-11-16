@@ -1,10 +1,10 @@
 var React = require('react');
-var CurrentWeather = require('./CurrentWeather');
+var CurrentWeather = require('CurrentWeather');
 
 var WeatherCard = ({cardData, currentData}) => {
   var {location, date, description} = cardData;
   var currentData = currentData;
-  
+
   return (
     <div className="card cardTemplate weather-forecast" hidden>
       <div className="city-key" hidden></div>

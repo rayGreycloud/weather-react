@@ -17,20 +17,20 @@ var Weather = React.createClass({
       isLoading: true,
       errorMessage: undefined,
       location: undefined,
-      data: undefined
+      cardData: undefined,
+      currentData: undefined
     });
 
     openWeatherMap.getWeather(location).then(function(data) {
-      var iconClass = getIconClass(data.weather.id);
-
+      console.log(data);
       that.setState({
         cardData: {
           location: location,
           date: data.dt,
-          description: data.weather.description
+          description: data.weather[0].description
         },
         currentData: {
-          iconClass: iconClass,
+          weathercode: data.weather[0].id,
           temp: Math.round(data.main.temp),
           humidity: Math.round(data.main.humidity),
           windSpeed: Math.round(data.wind.speed),
@@ -46,9 +46,17 @@ var Weather = React.createClass({
         errorMessage: e.message
       });
     });
+  },
+  componentDidMount: function() {
+    var location = this.props.location.query.location;
 
-    function getIconClass(code) {
-      switch(code) {
+    if (location && location.length > 0) {
+      this.handleSearch(location);
+      window.location.hash = '#/';
+    }
+
+    var weatherIcon = function(weathercode) {
+      switch(weathercode) {
         case 800:
         case 903:
         case 904:
@@ -122,18 +130,14 @@ var Weather = React.createClass({
           return 'cloudy';
         case 801:
         case 802:
-        case 803:          
+        case 803:
           return 'partly-cloudy-day';
       }
     }
-  },
-  componentDidMount: function() {
-    var location = this.props.location.query.location;
 
-    if (location && location.length > 0) {
-      this.handleSearch(location);
-      window.location.hash = '#/';
-    }
+    this.setState({
+      currentData.weatherIcon: weatherIcon
+    });  
   },
   componentWillReceiveProps: function(newProps) {
     var location = newProps.location.query.location;
@@ -150,8 +154,8 @@ var Weather = React.createClass({
     function renderWeather() {
       if (isLoading) {
         return <h3 className='text-center'>Fetching weather...</h3>;
-      } else if (currentData && cardData.location) {
-        return <WeatherCard cardData={carData} currentData={currentData}/>;
+      } else if (currentData && cardData) {
+        return <WeatherCard cardData={cardData} currentData={currentData}/>;
       }
     }
 
