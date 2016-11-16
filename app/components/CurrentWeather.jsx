@@ -7,7 +7,7 @@ var CurrentWeather = ({currentData}) => {
 
     <div className="current">
       <div className="visual">
-        <div className="icon">{weatherIcon}</div>
+        <div className={"icon " + weatherIcon}></div>
         <div className="temperature">
           <span className="value">{temp}</span><span className="scale">°F</span>
         </div>
