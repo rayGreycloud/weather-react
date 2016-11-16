@@ -1,6 +1,6 @@
 var React = require('react');
 var WeatherForm = require('WeatherForm');
-var WeatherMessage = require('WeatherMessage');
+var WeatherCard = require('WeatherCard');
 var ErrorModal = require('ErrorModal');
 var openWeatherMap = require('openWeatherMap');
 
@@ -17,19 +17,25 @@ var Weather = React.createClass({
       isLoading: true,
       errorMessage: undefined,
       location: undefined,
-      temp: undefined
+      data: undefined
     });
-    // Refactor to getWeather and setState on
-    // all props needed for WeatherCard
-
 
     openWeatherMap.getWeather(location).then(function(data) {
       that.setState({
-        location: location,
-        // set all variables
-        temp: Math.round(data.main.temp),
-        
-
+        cardData: {
+          location: location,
+          date: data.dt,
+          description: data.weather.description
+        },
+        currentData: {
+          weatherIcon: data.weather.icon,
+          temp: Math.round(data.main.temp),
+          humidity: Math.round(data.main.humidity),
+          windSpeed: Math.round(data.wind.speed),
+          windDeg: data.wind.deg,
+          sunrise: data.sys.sunrise,
+          sunset: data.sys.sunset
+        },
         isLoading: false
       });
     }, function(e) {
@@ -57,13 +63,13 @@ var Weather = React.createClass({
   },
 
   render: function() {
-    var {isLoading, data, location, errorMessage} = this.state;
+    var {isLoading, cardData, currentData, errorMessage} = this.state;
 
     function renderWeather() {
       if (isLoading) {
         return <h3 className='text-center'>Fetching weather...</h3>;
-      } else if (data && location) {
-        return <WeatherCard currentData={data} location={location}/>;
+      } else if (currentData && cardData.location) {
+        return <WeatherCard cardData={carData} currentData={currentData}/>;
       }
     }
 
