@@ -21,10 +21,15 @@ var Weather = React.createClass({
     });
     // Refactor to getWeather and setState on
     // all props needed for WeatherCard
-    openWeatherMap.getTemp(location).then(function(temp) {
+
+
+    openWeatherMap.getWeather(location).then(function(data) {
       that.setState({
         location: location,
-        temp: Math.round(temp),
+        // set all variables
+        temp: Math.round(data.main.temp),
+        
+
         isLoading: false
       });
     }, function(e) {
@@ -50,17 +55,15 @@ var Weather = React.createClass({
       window.location.hash = '#/';
     }
   },
-  // Add separate function to create WeatherCard
 
-  // Refactor to pass all weather props to WeatherCard
   render: function() {
-    var {isLoading, temp, location, errorMessage} = this.state;
+    var {isLoading, data, location, errorMessage} = this.state;
 
-    function renderMessage() {
+    function renderWeather() {
       if (isLoading) {
         return <h3 className='text-center'>Fetching weather...</h3>;
-      } else if (temp && location) {
-        return <WeatherMessage temp={temp} location={location}/>;
+      } else if (data && location) {
+        return <WeatherCard currentData={data} location={location}/>;
       }
     }
 
@@ -76,7 +79,7 @@ var Weather = React.createClass({
       <div>
         <h1 className='text-center page-title'>Get Weather</h1>
         <WeatherForm onSearch={this.handleSearch}/>
-        {renderMessage()}
+        {renderWeather()}
         {renderError()}
       </div>
     )
