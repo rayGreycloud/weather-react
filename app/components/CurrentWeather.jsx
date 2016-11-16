@@ -1,8 +1,9 @@
 var React = require('react');
 
 var CurrentWeather = ({currentData}) => {
-  var { weatherIcon, temp, humidity, windSpeed, windDeg, sunrise, sunset} = currentData;
-
+  var { weathercode, temp, humidity, windSpeed, windDeg, sunrise, sunset} = currentData;
+  var weatherIcon = 'clear-day';
+  
   return (
 
     <div className="current">
