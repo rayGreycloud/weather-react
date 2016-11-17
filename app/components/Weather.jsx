@@ -23,6 +23,7 @@ var Weather = React.createClass({
 
     openWeatherMap.getWeather(location).then(function(data) {
       console.log(data);
+
       that.setState({
         cardData: {
           location: location,

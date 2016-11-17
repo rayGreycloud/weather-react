@@ -1,21 +1,23 @@
 var React = require('react');
-var CurrentWeather = require('CurrentWeather');
+// var CurrentWeather = require('CurrentWeather');
 
 var WeatherCard = ({cardData, currentData}) => {
   var {location, date, description} = cardData;
   var currentData = currentData;
-
+  var d = new Date(date * 1000);
+  var datestamp = d.toString();
   return (
-    <div className="card cardTemplate weather-forecast" hidden>
-      <div className="city-key" hidden></div>
-      <div className="card-last-updated" hidden></div>
+    <div className="card weather-forecast">
+      <div className="city-key"></div>
+      <div className="card-last-updated"></div>
       <div className="location">{location}</div>
-      <div className="date">{date}</div>
+      <div className="date">{datestamp}</div>
       <div className="description">{description}</div>
-      <CurrentWeather currentData={currentData} />
+
       <div className="future">5-day Forecast</div>
     </div>
   )
 };
 
 module.exports = WeatherCard;
+//  <CurrentWeather currentData={currentData} />
