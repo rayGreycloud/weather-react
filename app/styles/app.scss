@@ -133,3 +133,14 @@ input[type=search] {
   .weather-forecast .future .oneday .icon {
     width: 32px;
     height: 32px; } }
+
+.form {
+  width: 500px;
+  margin: 0 auto;
+}
+.form__group {
+    max-width: 400px;
+    display: block;
+    float: left;
+    padding-right: 6px;
+}
