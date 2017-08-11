@@ -1,7 +1,7 @@
 var React = require('react');
 
 var WeatherCard = ({cardData}) => {
-  var {location, date, description, weatherIcon, temp, humidity, windSpeed, windDeg, sunrise, sunset} = cardData;
+  var {location, date, description, weatherIcon, temp, humidity, windSpeed, windDirection, sunrise, sunset} = cardData;
 
   return (
     <div className="card weather-forecast">
@@ -21,8 +21,8 @@ var WeatherCard = ({cardData}) => {
           <div className="humidity">{humidity}</div>
           <div className="wind">
             <span className="value">{windSpeed}</span>
-            <span className="scale">mph</span>
-            <span className="direction">{windDeg}</span>°
+            <span className="scale">mph </span>
+            <span className="direction">{windDirection}</span>
           </div>
           <div className="sunrise">{sunrise}</div>
           <div className="sunset">{sunset}</div>
