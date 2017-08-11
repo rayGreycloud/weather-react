@@ -113,6 +113,12 @@ var Weather = React.createClass({
         }
       }
 
+      function getWindDirection(deg) {
+        const index = Math.abs(Math.round((deg - 11.25) / 22.5));
+        const cardinals = ["N","NNE","NE","ENE","E","ESE", "SE",  "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+        return cardinals[index];
+      }
+
       that.setState({
         data: {
           location: location,
@@ -122,7 +128,7 @@ var Weather = React.createClass({
           temp: Math.round(data.main.temp),
           humidity: Math.round(data.main.humidity),
           windSpeed: Math.round(data.wind.speed),
-          windDeg: Math.round(data.wind.deg),
+          windDirection: getWindDirection(data.wind.deg),
           sunrise: getTime(data.sys.sunrise),
           sunset: getTime(data.sys.sunset)
         },
