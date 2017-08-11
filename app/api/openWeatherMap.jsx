@@ -10,8 +10,8 @@ module.exports = {
 
     return axios.get(requestUrl).then(function(res) {
 
-      if (res.data.cod && res.data.message) {
-        throw new Error(res.data.message);
+      if (res.data.cod  === 401) {
+        throw new Error(res.data.message || res.data.error);
       } else {
         // refactor to return entire weather results object
         return res.data;
