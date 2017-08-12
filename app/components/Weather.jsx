@@ -2,7 +2,8 @@ var React = require('react');
 var WeatherForm = require('WeatherForm');
 var WeatherCard = require('WeatherCard');
 var ErrorModal = require('ErrorModal');
-var openWeatherMap = require('openWeatherMap');
+const yahooWeather = require('yahooWeather');
+// var openWeatherMap = require('openWeatherMap');
 
 var Weather = React.createClass({
   getInitialState: function() {
@@ -20,97 +21,118 @@ var Weather = React.createClass({
       data: undefined
     });
 
-    openWeatherMap.getWeather(location).then(function(data) {
+    yahooWeather.getWeather(location).then(function(data) {
       console.log(data);
 
-      function getDate(d) {
-        var date = new Date(d * 1000);
-        return date.toLocaleString();
-      }
-
-      function getTime(d) {
-        var date = new Date(d * 1000);
-        return date.toLocaleTimeString();
-      }
+      const { location, wind, atmosphere, astronomy } = data.query.results.channel;
+      const { condition, forecast } = data.query.results.channel.item;
 
       function getWeatherIcon(code) {
-        switch(code) {
-          case 800:
-          case 903:
-          case 904:
-            return 'clear-day';
-          case 300:
-          case 301:
-          case 302:
-          case 310:
-          case 311:
-          case 312:
-          case 313:
-          case 314:
-          case 321:
-          case 500:
-          case 501:
-          case 502:
-          case 503:
-          case 504:
-          case 511:
-          case 520:
-          case 521:
-          case 522:
-          case 531:
-          case 900:
-          case 901:
-          case 902:
-          case 906:
-          case 960:
-          case 961:
-          case 962:
-            return 'rain';
-          case 200:
-          case 201:
-          case 202:
-          case 210:
-          case 211:
-          case 212:
-          case 221:
-          case 230:
-          case 231:
-          case 232:
-            return 'thunderstorms';
-          case 600:
-          case 601:
-          case 602:
-          case 611:
-          case 612:
-          case 615:
-          case 616:
-          case 620:
-          case 621:
-          case 622:
-            return 'snow';
-          case 701:
-          case 711:
-          case 721:
-          case 731:
-          case 741:
-          case 751:
-          case 761:
-            return 'fog';
-          case 905:
-          case 954:
-          case 955:
-          case 956:
-          case 957:
-          case 958:
-          case 959:
-            return 'windy';
-          case 804:
-            return 'cloudy';
-          case 801:
-          case 802:
-          case 803:
-            return 'partly-cloudy-day';
+        var icon = '';
+        switch(condid) {
+          case '0': icon  = 'wi-tornado';
+            break;
+          case '1': icon = 'wi-storm-showers';
+            break;
+          case '2': icon = 'wi-tornado';
+            break;
+          case '3': icon = 'wi-thunderstorm';
+            break;
+          case '4': icon = 'wi-thunderstorm';
+            break;
+          case '5': icon = 'wi-snow';
+            break;
+          case '6': icon = 'wi-rain-mix';
+            break;
+          case '7': icon = 'wi-rain-mix';
+            break;
+          case '8': icon = 'wi-sprinkle';
+            break;
+          case '9': icon = 'wi-sprinkle';
+            break;
+          case '10': icon = 'wi-hail';
+            break;
+          case '11': icon = 'wi-showers';
+            break;
+          case '12': icon = 'wi-showers';
+            break;
+          case '13': icon = 'wi-snow';
+            break;
+          case '14': icon = 'wi-storm-showers';
+            break;
+          case '15': icon = 'wi-snow';
+            break;
+          case '16': icon = 'wi-snow';
+            break;
+          case '17': icon = 'wi-hail';
+            break;
+          case '18': icon = 'wi-hail';
+            break;
+          case '19': icon = 'wi-cloudy-gusts';
+            break;
+          case '20': icon = 'wi-fog';
+            break;
+          case '21': icon = 'wi-fog';
+            break;
+          case '22': icon = 'wi-fog';
+            break;
+          case '23': icon = 'wi-cloudy-gusts';
+            break;
+          case '24': icon = 'wi-cloudy-windy';
+            break;
+          case '25': icon = 'wi-thermometer';
+            break;
+          case '26': icon = 'wi-cloudy';
+            break;
+          case '27': icon = 'wi-night-cloudy';
+            break;
+          case '28': icon = 'wi-day-cloudy';
+            break;
+          case '29': icon = 'wi-night-cloudy';
+            break;
+          case '30': icon = 'wi-day-cloudy';
+            break;
+          case '31': icon = 'wi-night-clear';
+            break;
+          case '32': icon = 'wi-day-sunny';
+            break;
+          case '33': icon = 'wi-night-clear';
+            break;
+          case '34': icon = 'wi-day-sunny-overcast';
+            break;
+          case '35': icon = 'wi-hail';
+            break;
+          case '36': icon = 'wi-day-sunny';
+            break;
+          case '37': icon = 'wi-thunderstorm';
+            break;
+          case '38': icon = 'wi-thunderstorm';
+            break;
+          case '39': icon = 'wi-thunderstorm';
+            break;
+          case '40': icon = 'wi-storm-showers';
+            break;
+          case '41': icon = 'wi-snow';
+            break;
+          case '42': icon = 'wi-snow';
+            break;
+          case '43': icon = 'wi-snow';
+            break;
+          case '44': icon = 'wi-cloudy';
+            break;
+          case '45': icon = 'wi-lightning';
+            break;
+          case '46': icon = 'wi-snow';
+            break;
+          case '47': icon = 'wi-thunderstorm';
+            break;
+          case '3200': icon = 'wi-cloud';
+            break;
+          default: icon = 'wi-cloud';
+            break;
         }
+
+        return `<i class="wi ${icon}"></i>`;
       }
 
       function getWindDirection(deg) {
@@ -121,16 +143,16 @@ var Weather = React.createClass({
 
       that.setState({
         data: {
-          location: location,
-          date: getDate(data.dt),
-          description: data.weather[0].description,
-          weatherIcon: getWeatherIcon(data.weather[0].id),
-          temp: Math.round(data.main.temp),
-          humidity: Math.round(data.main.humidity),
-          windSpeed: Math.round(data.wind.speed),
-          windDirection: getWindDirection(data.wind.deg),
-          sunrise: getTime(data.sys.sunrise),
-          sunset: getTime(data.sys.sunset)
+          location: location.city,
+          date: condition.date,
+          description: condition.text,
+          weatherIcon: getWeatherIcon(condition.code),
+          temp: condition.temp,
+          humidity: atmosphere.humidity,
+          windSpeed: wind.speed,
+          windDirection: getWindDirection(wind.direction),
+          sunrise: astronomy.sunrise,
+          sunset: astronomy.sunset
         },
         isLoading: false
       });
