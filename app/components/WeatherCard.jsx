@@ -12,7 +12,7 @@ var WeatherCard = ({cardData}) => {
       <div className="description">{description}</div>
       <div className="current">
         <div className="visual">
-          <i className={weatherIcon}></i>        
+          <div className={"icon " + weatherIcon}></div>
           <div className="temperature">
             <span className="value">{temp}</span><span className="scale">°F</span>
           </div>
@@ -28,7 +28,7 @@ var WeatherCard = ({cardData}) => {
           <div className="sunset">{sunset}</div>
         </div>
       </div>
-      <div className="future">5-day Forecast</div>
+      <div className="future"></div>
     </div>
   )
 };
