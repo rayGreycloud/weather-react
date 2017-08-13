@@ -5,9 +5,9 @@ const YAHOO_WEATHER_API_URL = 'https://query.yahooapis.com/v1/public/yql';
 module.exports = {
 
   getWeather: function(location) {
-    var encodedLocation = encodeURIComponent(location);
-    var query1 = '?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D';
-    var query2 = '3D%202487889&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
+    var encodedLocation = encodeURIComponent(location.toLowerCase());
+    var query1 = '?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22';
+    var query2 = '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
     var requestUrl = `${YAHOO_WEATHER_API_URL}${query1}${encodedLocation}${query2}`;
 
     return axios.get(requestUrl).then(function(res) {
