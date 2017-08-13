@@ -18,7 +18,10 @@ var WeatherCard = ({cardData}) => {
           </div>
         </div>
         <div className="description">
-          <div className="humidity">{humidity}</div>
+          <div className="humidity">
+            <span className="value">{humidity}</span>
+            <span className="scale">%</span>
+          </div>
           <div className="wind">
             <span className="value">{windSpeed}</span>
             <span className="scale">mph </span>
