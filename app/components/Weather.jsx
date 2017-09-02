@@ -37,7 +37,7 @@ var Weather = React.createClass({
           sunset: moment.unix(sys.sunset).format("LT"),
           temp: Math.round(main.temp),
           wind_speed: wind.speed,
-          wind_deg: wind.deg
+          wind_direction: this.getWindDirection(wind.deg)
         },
         isLoading: false
       });
@@ -63,6 +63,11 @@ var Weather = React.createClass({
       this.handleSearch(location);
       window.location.hash = '#/';
     }
+  },
+  getWindDirection: function(deg) {
+    const index = Math.abs(Math.round((deg - 11.25) / 22.5));
+    const cardinals = ["N","NNE","NE","ENE","E","ESE", "SE",  "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+    return cardinals[index];
   },
   render: function() {
     var {isLoading, weather, location, errorMessage} = this.state;

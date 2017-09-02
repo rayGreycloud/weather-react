@@ -13,7 +13,7 @@ var WeatherMessage = ({weather, location}) => {
     sunrise,
     sunset,
     temp,
-    wind_deg,
+    wind_direction,
     wind_speed
   } = weather;
 
@@ -45,9 +45,9 @@ var WeatherMessage = ({weather, location}) => {
             <span className="value">
               {wind_speed}
             </span>
-            <span className="scale">mph </span>
+            <span className="scale"> mph </span>
             <span className="direction">
-              {wind_deg}
+              {wind_direction}
             </span>
           </div>
           <div className="sunrise">
