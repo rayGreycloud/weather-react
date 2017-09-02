@@ -1,4 +1,5 @@
 var React = require('react');
+var moment = require('moment');
 var WeatherForm = require('WeatherForm');
 var WeatherMessage = require('WeatherMessage');
 var ErrorModal = require('ErrorModal');
@@ -26,14 +27,14 @@ var Weather = React.createClass({
       that.setState({
         location: location,
         weather: {
-          date: dt,
+          date: moment.unix(dt).format("DD MMM YYYY hh:mm a"),
           description: weather[0].main,
           humidity: main.humidity,
           icon: weather[0].icon,
           name: name,
           pressure: main.pressure,
-          sunrise: sys.sunrise,
-          sunset: sys.sunset,
+          sunrise: moment.unix(sys.sunrise).format("LT"),
+          sunset: moment.unix(sys.sunset).format("LT"),
           temp: Math.round(main.temp),
           wind_speed: wind.speed,
           wind_deg: wind.deg

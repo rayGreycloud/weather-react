@@ -40,8 +40,8 @@ input[type=search] {
   display: -ms-flexbox;
   display: flex; }
   .weather-forecast .current .icon {
-    width: 128px;
-    height: 128px; }
+    width: auto;
+}
   .weather-forecast .current .visual {
     display: -webkit-box;
     display: -webkit-flex;
@@ -71,8 +71,13 @@ input[type=search] {
 
 
 .weather-forecast .icon {
-  background-repeat: no-repeat;
-  background-size: contain; }
+  align-content: center;
+}
+
+.weather-forecast img {
+    width: 8rem;
+    height: 8rem;
+}
 
 
 @media (max-width: 450px) {
