@@ -27,7 +27,7 @@ var Weather = React.createClass({
       that.setState({
         location: location,
         weather: {
-          date: moment.unix(dt).format("DD MMM YYYY hh:mm a"),
+          date: moment.unix(dt).format("LLLL"),
           description: weather[0].main,
           humidity: main.humidity,
           icon: weather[0].icon,
