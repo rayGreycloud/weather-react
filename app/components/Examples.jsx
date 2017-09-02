@@ -3,7 +3,7 @@ var {Link} = require('react-router');
 
 var Examples = (props) => {
   return (
-    <div>
+    <div className="callout">
       <h1 className='text-center page-title'>Examples</h1>
       <p>Here are a few example locations to try out:</p>
       <ul>
@@ -20,7 +20,7 @@ var Examples = (props) => {
           <Link to='/?location=Mumbai'>Mumbai, India</Link>
         </li>
         <li>
-          <Link to='/?location=Tokiyo'>Tokyo, Japan</Link>
+          <Link to='/?location=Tokyo'>Tokyo, Japan</Link>
         </li>
       </ul>
     </div>

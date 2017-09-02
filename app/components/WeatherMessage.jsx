@@ -10,29 +10,56 @@ var WeatherMessage = ({weather, location}) => {
     icon,
     name,
     pressure,
+    sunrise,
+    sunset,
     temp,
     wind_deg,
     wind_speed
   } = weather;
 
   const icon_url = 'http://openWeatherMap.org/img/w/' + icon + '.png';
-console.log(icon_url);
+
   return (
-    <div>
-      <h3 className='text-centered'>{location}</h3>
-      <ul>
-        <li>Date: {date}</li>
-        <li>Station: {name}</li>
-        <li>Currently: {description}</li>
-        <li>Icon: <img src={icon_url} /></li>
-        <li>Temp: {temp}&deg;</li>
-        <li>Humidity: {humidity}%</li>
-        <li>Barometer: {pressure}</li>
-        <li>Wind Speed: {wind_speed}</li>
-        <li>Direction: {wind_deg}</li>
-      </ul>
+    <div className="card weather-forecast">
+      <div className="location">{location}</div>
+      <div className="date">{date}</div>
+      <div className="description">{description}</div>
+      <div className="current">
+        <div className="visual">
+          <div className='icon'><img src={icon_url} /></div>
+          <div className="temperature">
+            <span className="value">
+              {temp}
+            </span>
+            <span className="scale">°F</span>
+          </div>
+        </div>
+        <div className="description">
+          <div className="humidity">
+            <span className="value">
+              {humidity}
+            </span>
+            <span className="scale">%</span>
+          </div>
+          <div className="wind">
+            <span className="value">
+              {wind_speed}
+            </span>
+            <span className="scale">mph </span>
+            <span className="direction">
+              {wind_deg}
+            </span>
+          </div>
+          <div className="sunrise">
+            {sunrise}
+          </div>
+          <div className="sunset">
+            {sunset}
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 };
 
 module.exports = WeatherMessage;
