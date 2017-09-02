@@ -37,7 +37,7 @@ var Weather = React.createClass({
           sunset: moment.unix(sys.sunset).format("LT"),
           temp: Math.round(main.temp),
           wind_speed: wind.speed,
-          wind_direction: this.getWindDirection(wind.deg)
+          wind_direction: that.getWindDirection(wind.deg)
         },
         isLoading: false
       });

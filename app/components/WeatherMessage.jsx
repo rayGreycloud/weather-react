@@ -23,7 +23,7 @@ var WeatherMessage = ({weather, location}) => {
     <div className="card weather-forecast">
       <div className="location">{location}</div>
       <div className="date">{date}</div>
-      <div className="description">{description}</div>
+      <div className="description"><h4><em>{description}</em></h4></div>
       <div className="current">
         <div className="visual">
           <div className='icon'><img src={icon_url} /></div>
