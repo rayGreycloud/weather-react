@@ -1,12 +1,17 @@
 import React from 'react';
-var {Link} = require('react-router');
 
-const About = (props) => {
-  return (
+var { Link } = require('react-router');
+
+const About = (props) =>
+  (
     <div className="callout">
       <h2 className='text-center page-title'>About React Weather App</h2>
-      <p>Welcome to the React Weather App. This weather application was created using React, a Javascript library for building user interfaces, and Node.js, which is built on Chrome's V8 Javascript engine. The weather information is supplied by Open Weather Map.</p>
-      <p>For more information about these web technologies, check out the links below:</p>
+      <p>
+        Welcome to the React Weather App. This weather application was created using React, a Javascript library for building user interfaces, and Node.js, which is built on Chrome's V8 Javascript engine. The weather information is supplied by Open Weather Map
+        </p>
+      <p>
+        For more information about these web technologies, check out the links below:
+      </p>
       <ul>
         <li>
           <a href='https://facebook.github.io/react'>React</a>
@@ -19,8 +24,6 @@ const About = (props) => {
         </li>
       </ul>
     </div>
-  )
-};
-
+  );
 
 module.exports = About;

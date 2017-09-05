@@ -1,13 +1,15 @@
 var axios = require('axios');
 
-const OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=d51b7c7531536df8b94bf1b025311b4a&units=imperial';
+const appId = 'appid=d51b7c7531536df8b94bf1b025311b4a';
+const units = '&units=imperial';
+const OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather' + appId + units;
 
 module.exports = {
-  getTemp: function(location) {
+  getTemp: function (location) {
     var encodedLocation = encodeURIComponent(location);
     var requestUrl = `${OPEN_WEATHER_MAP_URL}&q=${encodedLocation}`;
 
-    return axios.get(requestUrl).then(function(res) {
+    return axios.get(requestUrl).then(function (res) {
 
       if (res.data.cod && res.data.message) {
         throw new Error(res.data.message);
@@ -15,8 +17,10 @@ module.exports = {
         console.log(res.data);
         return res.data;
       }
-    }, function(res) {
+    },
+
+    function (res) {
       throw new Error(res.data.message);
     });
-  }
-}
+  },
+};

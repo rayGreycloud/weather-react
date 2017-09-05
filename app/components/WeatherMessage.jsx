@@ -1,7 +1,7 @@
 var React = require('react');
 
 // var WeatherMessage = ({temp, location, humidity}) => {
-var WeatherMessage = ({weather, location}) => {
+var WeatherMessage = ({ weather, location }) => {
 
   const {
     date,
@@ -13,11 +13,11 @@ var WeatherMessage = ({weather, location}) => {
     sunrise,
     sunset,
     temp,
-    wind_direction,
-    wind_speed
+    windDirection,
+    windSpeed,
   } = weather;
 
-  const icon_url = 'http://openWeatherMap.org/img/w/' + icon + '.png';
+  const iconUrl = 'http://openWeatherMap.org/img/w/' + icon + '.png';
 
   return (
     <div className="card weather-forecast">
@@ -26,7 +26,7 @@ var WeatherMessage = ({weather, location}) => {
       <div className="description"><h4><em>{description}</em></h4></div>
       <div className="current">
         <div className="visual">
-          <div className='icon'><img src={icon_url} /></div>
+          <div className='icon'><img src={iconUrl} /></div>
           <div className="temperature">
             <span className="value">
               {temp}
@@ -43,11 +43,11 @@ var WeatherMessage = ({weather, location}) => {
           </div>
           <div className="wind">
             <span className="value">
-              {wind_speed}
+              {windSpeed}
             </span>
             <span className="scale"> mph </span>
             <span className="direction">
-              {wind_direction}
+              {windDirection}
             </span>
           </div>
           <div className="sunrise">
